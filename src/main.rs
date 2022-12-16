@@ -15,5 +15,13 @@ fn adjust_into_mbs(bytes: u128) -> Result<AdjustedByte, Error> {
 }
 
 fn main() {
+    let size = file_size("rust-action.pdf");
 
+    match size {
+        Ok(s) => {
+            let size_in_mega_bytes = adjust_into_mbs(s.into());
+            println!("File Size: {:?}", size_in_mega_bytes);
+        }
+        Err(e) => println!("Error: {:?}", e)
+    }
 }
